@@ -1,5 +1,10 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+import * as dotenv from 'dotenv'
+
+// Try to load from multiple possible locations
+dotenv.config({ path: './.env.local' });
+dotenv.config({ path: './.env' });
 
 const setup = () => {
   if (!process.env.DATABASE_URL) {
