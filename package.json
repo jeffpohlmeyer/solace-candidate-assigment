@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:start": "docker compose --env-file .env.local up",
+    "db:start": "docker compose up",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "npx tsx ./src/db/seed/index.ts"

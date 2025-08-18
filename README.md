@@ -23,7 +23,7 @@ The app is configured to return a default list of advocates. This will allow you
 1. Feel free to use whatever configuration of postgres you like. The project is set up to use docker-compose.yml to set up postgres. The url is in .env.
 
 ```bash
-docker compose --env-file .env.local up -d
+docker compose up -d
 ```
 alternatively you can run
 ```bash
