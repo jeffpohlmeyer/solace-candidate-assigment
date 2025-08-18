@@ -42,7 +42,6 @@ export default function Home() {
   };
 
   return (
-    <main style={{ margin: "24px" }}>
       <h1>Solace Advocates</h1>
       <br />
       <br />
@@ -51,8 +50,9 @@ export default function Home() {
         <p>
           Searching for: <span id="search-term"></span>
         </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} />
         <button onClick={onClick}>Reset Search</button>
+    <main className="p-6">
+            className="h-[30px] rounded-md border border-gray-200 px-1 outline-none focus-visible:ring-1 focus-visible:ring-[#285e50] focus-visible:ring-offset-2"
       </div>
       <br />
       <br />
