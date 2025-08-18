@@ -133,6 +133,7 @@ export default function Home() {
             id="search"
             className="h-[30px] rounded-md border border-gray-200 px-1 outline-none focus-visible:ring-1 focus-visible:ring-[#285e50] focus-visible:ring-offset-2"
             value={search}
+            type="search"
             onChange={onChange}
           />
         </div>
