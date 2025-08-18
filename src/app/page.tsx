@@ -41,8 +41,10 @@ const TableData = ({
 );
 
 export default function Home() {
-  const [advocates, setAdvocates] = useState([]);
-  const [filteredAdvocates, setFilteredAdvocates] = useState([]);
+  const [advocates, setAdvocates] = useState<AdvocateType[]>([]);
+  const [filteredAdvocates, setFilteredAdvocates] = useState<AdvocateType[]>([]);
+  const [search, setSearch] = useState<string>('');
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     console.log("fetching advocates...");
