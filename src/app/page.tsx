@@ -56,10 +56,16 @@ export default function Home() {
     });
   }, []);
 
-  const onChange = (e) => {
-    const searchTerm = e.target.value;
+  useEffect(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
 
-    document.getElementById("search-term").innerHTML = searchTerm;
+    timeoutRef.current = setTimeout(() => {
+      if (search === '') {
+        setFilteredAdvocates(advocates);
+        return;
+      }
 
       const checkAdvocateContainsSearch = (
         advocate: AdvocateType,
@@ -90,7 +96,9 @@ export default function Home() {
         );
       });
 
-    setFilteredAdvocates(filteredAdvocates);
+      setFilteredAdvocates(filteredAdvocates);
+    }, 500);
+  }, [search, advocates]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
