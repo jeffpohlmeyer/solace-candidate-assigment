@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Mollie_Glaston';
+    src:
+      local('Mollie glaston Regular'), local('Mollie Glaston Regular'),
+      local('mollie glaston regular'), local('Mollie-Glaston-Regular'),
+      local('Mollie-glaston-Regular'), local('mollie-glaston-regular'),
+      local('MollieGlastonRegular'), local('MollieglastonRegular'),
+      local('mollieglastonregular'),
+      url('/fonts/mollie-glaston/Mollie glaston Regular.ttf'); /* TypeScript warning can be ignored - this path works at runtime */
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+  }
+}
