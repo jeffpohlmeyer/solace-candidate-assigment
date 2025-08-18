@@ -1,6 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from 'react';
+import { AdvocateType } from '@/db/schema';
+import { classNames } from '@/lib/utils/css';
+import { formatPhoneNumber } from '@/lib/utils/formatting';
+
 type FilterKeys = Pick<
   AdvocateType,
   'firstName' | 'lastName' | 'city' | 'degree' | 'specialties' | 'yearsOfExperience'
@@ -47,8 +51,8 @@ export default function Home() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    console.log("fetching advocates...");
-    fetch("/api/advocates").then((response) => {
+    console.log('fetching advocates...');
+    fetch('/api/advocates').then((response) => {
       response.json().then((jsonResponse) => {
         setAdvocates(jsonResponse.data);
         setFilteredAdvocates(jsonResponse.data);
