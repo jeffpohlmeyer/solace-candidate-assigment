@@ -61,17 +61,6 @@ export default function Home() {
 
     document.getElementById("search-term").innerHTML = searchTerm;
 
-    console.log("filtering advocates...");
-    const filteredAdvocates = advocates.filter((advocate) => {
-      return (
-        advocate.firstName.includes(searchTerm) ||
-        advocate.lastName.includes(searchTerm) ||
-        advocate.city.includes(searchTerm) ||
-        advocate.degree.includes(searchTerm) ||
-        advocate.specialties.includes(searchTerm) ||
-        advocate.yearsOfExperience.includes(searchTerm)
-      );
-    });
       const checkAdvocateContainsSearch = (
         advocate: AdvocateType,
         key: keyof FilterKeys
@@ -90,8 +79,21 @@ export default function Home() {
         }
       };
 
+      const filteredAdvocates = advocates.filter((advocate) => {
+        return (
+          checkAdvocateContainsSearch(advocate, 'firstName') ||
+          checkAdvocateContainsSearch(advocate, 'lastName') ||
+          checkAdvocateContainsSearch(advocate, 'city') ||
+          checkAdvocateContainsSearch(advocate, 'degree') ||
+          checkAdvocateContainsSearch(advocate, 'specialties') ||
+          checkAdvocateContainsSearch(advocate, 'yearsOfExperience')
+        );
+      });
 
     setFilteredAdvocates(filteredAdvocates);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
   };
 
   const onClick = () => {
