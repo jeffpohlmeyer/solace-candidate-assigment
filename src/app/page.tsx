@@ -10,7 +10,10 @@ type FilterKeys = Pick<
   'firstName' | 'lastName' | 'city' | 'degree' | 'specialties' | 'yearsOfExperience'
 >;
 
-const TableHeader = ({ children, className = '' }: { children: string; className?: string }) => (
+const TableHeader = ({
+  children,
+  className = ''
+}: Readonly<{ children: React.ReactNode; className?: string }>) => (
   <th
     scope="col"
     className={classNames(
@@ -27,12 +30,12 @@ const TableData = ({
   advocatesLength,
   advocateIdx,
   className = ''
-}: {
+}: Readonly<{
   children: React.ReactNode;
   advocatesLength: number;
   advocateIdx: number;
   className?: string;
-}) => (
+}>) => (
   <td
     className={classNames(
       advocateIdx < advocatesLength - 1 ? 'border-b border-gray-200' : '',
