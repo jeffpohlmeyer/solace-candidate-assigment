@@ -103,38 +103,10 @@ export default function Home() {
           Reset Search
         </button>
       </div>
-      <br />
-      <br />
-      <table>
-        <thead>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>City</th>
-          <th>Degree</th>
-          <th>Specialties</th>
-          <th>Years of Experience</th>
-          <th>Phone Number</th>
-        </thead>
-        <tbody>
-          {filteredAdvocates.map((advocate) => {
-            return (
-              <tr>
-                <td>{advocate.firstName}</td>
-                <td>{advocate.lastName}</td>
-                <td>{advocate.city}</td>
-                <td>{advocate.degree}</td>
-                <td>
-                  {advocate.specialties.map((s) => (
-                    <div>{s}</div>
-                  ))}
-                </td>
-                <td>{advocate.yearsOfExperience}</td>
-                <td>{advocate.phoneNumber}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="flow-root">
+        <table className="min-w-full border-separate border-spacing-0">
+          <thead>
+            <tr>
               <TableHeader className="rounded-tl-md pl-3">First Name</TableHeader>
               <TableHeader>Last Name</TableHeader>
               <TableHeader>City</TableHeader>
@@ -142,6 +114,12 @@ export default function Home() {
               <TableHeader>Specialties</TableHeader>
               <TableHeader>Years of Experience</TableHeader>
               <TableHeader className="rounded-tr-md">Phone Number</TableHeader>
+            </tr>
+          </thead>
+          <tbody className="divide-y">
+            {filteredAdvocates.map((advocate, advocateIdx) => {
+              return (
+                <tr className="border-b border-gray-500" key={advocate.id}>
                   <TableData
                     advocateIdx={advocateIdx}
                     advocatesLength={filteredAdvocates.length}
@@ -171,6 +149,12 @@ export default function Home() {
                   <TableData advocateIdx={advocateIdx} advocatesLength={filteredAdvocates.length}>
                     {formatPhoneNumber(advocate.phoneNumber)}
                   </TableData>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </main>
   );
 }
