@@ -6,6 +6,39 @@ type FilterKeys = Pick<
   'firstName' | 'lastName' | 'city' | 'degree' | 'specialties' | 'yearsOfExperience'
 >;
 
+const TableHeader = ({ children, className = '' }: { children: string; className?: string }) => (
+  <th
+    scope="col"
+    className={classNames(
+      'sticky top-0 z-10 border-b bg-[#285e50] px-1 py-3.5 text-left text-sm font-semibold text-white',
+      className
+    )}
+  >
+    {children}
+  </th>
+);
+
+const TableData = ({
+  children,
+  advocatesLength,
+  advocateIdx,
+  className = ''
+}: {
+  children: React.ReactNode;
+  advocatesLength: number;
+  advocateIdx: number;
+  className?: string;
+}) => (
+  <td
+    className={classNames(
+      advocateIdx < advocatesLength - 1 ? 'border-b border-gray-200' : '',
+      'whitespace-nowrap px-1 py-4 text-sm',
+      className
+    )}
+  >
+    {children}
+  </td>
+);
 
 export default function Home() {
   const [advocates, setAdvocates] = useState([]);
@@ -102,6 +135,42 @@ export default function Home() {
           })}
         </tbody>
       </table>
+              <TableHeader className="rounded-tl-md pl-3">First Name</TableHeader>
+              <TableHeader>Last Name</TableHeader>
+              <TableHeader>City</TableHeader>
+              <TableHeader>Degree</TableHeader>
+              <TableHeader>Specialties</TableHeader>
+              <TableHeader>Years of Experience</TableHeader>
+              <TableHeader className="rounded-tr-md">Phone Number</TableHeader>
+                  <TableData
+                    advocateIdx={advocateIdx}
+                    advocatesLength={filteredAdvocates.length}
+                    className="pl-3"
+                  >
+                    {advocate.firstName}
+                  </TableData>
+                  <TableData advocateIdx={advocateIdx} advocatesLength={filteredAdvocates.length}>
+                    {advocate.lastName}
+                  </TableData>
+                  <TableData advocateIdx={advocateIdx} advocatesLength={filteredAdvocates.length}>
+                    {advocate.city}
+                  </TableData>
+                  <TableData advocateIdx={advocateIdx} advocatesLength={filteredAdvocates.length}>
+                    {advocate.degree}
+                  </TableData>
+                  <TableData advocateIdx={advocateIdx} advocatesLength={filteredAdvocates.length}>
+                    <ul className="list-none">
+                      {advocate.specialties.map((s, index) => (
+                        <li key={index}>{s}</li>
+                      ))}
+                    </ul>
+                  </TableData>
+                  <TableData advocateIdx={advocateIdx} advocatesLength={filteredAdvocates.length}>
+                    {advocate.yearsOfExperience}
+                  </TableData>
+                  <TableData advocateIdx={advocateIdx} advocatesLength={filteredAdvocates.length}>
+                    {formatPhoneNumber(advocate.phoneNumber)}
+                  </TableData>
     </main>
   );
 }
