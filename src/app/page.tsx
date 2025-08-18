@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+type FilterKeys = Pick<
+  AdvocateType,
+  'firstName' | 'lastName' | 'city' | 'degree' | 'specialties' | 'yearsOfExperience'
+>;
+
 
 export default function Home() {
   const [advocates, setAdvocates] = useState([]);
