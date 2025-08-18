@@ -104,8 +104,11 @@ export default function Home() {
     setSearch(e.target.value);
   };
 
-  const onClick = () => {
-    console.log(advocates);
+  const handleResetSearch = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setSearch('');
     setFilteredAdvocates(advocates);
   };
 
