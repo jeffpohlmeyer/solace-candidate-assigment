@@ -1,7 +1,3 @@
-import { config } from 'dotenv';
-
-config({ path: '.env.local' });
-
 (async () => {
   try {
     const { db } = await import('@/db');
