@@ -72,6 +72,24 @@ export default function Home() {
         advocate.yearsOfExperience.includes(searchTerm)
       );
     });
+      const checkAdvocateContainsSearch = (
+        advocate: AdvocateType,
+        key: keyof FilterKeys
+      ): boolean => {
+        if (key === 'specialties') {
+          return advocate[key].some((specialty) =>
+            specialty.toLowerCase().includes(search.toLowerCase())
+          );
+        } else if (key === 'yearsOfExperience') {
+          if (isNaN(Number(search))) {
+            return false;
+          }
+          return advocate[key] === Number(search);
+        } else {
+          return advocate[key]?.toLowerCase().includes(search.toLowerCase());
+        }
+      };
+
 
     setFilteredAdvocates(filteredAdvocates);
   };
